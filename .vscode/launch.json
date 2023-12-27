@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: JobProposalGents",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/JobProposalGents/JobProposalGents.py",
+            "cwd": "${workspaceFolder}/examples/JobProposalGents",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Python: AnotherAgentTeam",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/AnotherAgentTeam/AnotherAgentTeam.py",
+            "cwd": "${workspaceFolder}/examples/AnotherAgentTeam",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        // Add more configurations as needed
+    ]
+}
