@@ -11,14 +11,14 @@ from agency_swarm.tools import Retrieval, CodeInterpreter
 
 from instructor import OpenAISchema
 
-from examples.JobProposalGents.instructions import (
+from JobProposalGents.instructions import (
     ceo_instructions,
     analyst_instructions,
     writer_instructions,
     editor_instructions,
     dev_instructions,
 )
-from examples.JobProposalGents.tools import (
+from JobProposalGents.tools import (
     ExecutePyFile,
     File,
     ExtractJobDetails,

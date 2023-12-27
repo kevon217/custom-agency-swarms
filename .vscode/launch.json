@@ -1,12 +1,12 @@
 {
-    "version": "0.2.0",
+    "version": "0.0.0",
     "configurations": [
         {
             "name": "Python: JobProposalGents",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/examples/JobProposalGents/JobProposalGents.py",
-            "cwd": "${workspaceFolder}/examples/JobProposalGents",
+            "program": "${workspaceFolder}/JobProposalGents/JobProposalGents.py",
+            "cwd": "${workspaceFolder}/JobProposalGents",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
@@ -14,11 +14,11 @@
             }
         },
         {
-            "name": "Python: AnotherAgentTeam",
+            "name": "Python: WebBrowswing",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/examples/AnotherAgentTeam/AnotherAgentTeam.py",
-            "cwd": "${workspaceFolder}/examples/AnotherAgentTeam",
+            "program": "${workspaceFolder}/WebBrowsing/web_browsing_agent.py",
+            "cwd": "${workspaceFolder}/WebBrowsing",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {

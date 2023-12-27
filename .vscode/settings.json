@@ -1,11 +1,13 @@
 {
     "python.analysis.extraPaths": [
-        "${workspaceFolder}"
+        "${workspaceFolder}",
+        "${workspaceFolder}/agency_swarm",
     ],
     "terminal.integrated.env.windows": {
         "PYTHONPATH": "${workspaceFolder}"
     },
     "terminal.integrated.cwd": "${workspaceFolder}",
     "python.envFile": "${workspaceFolder}/.env",
-    "jupyter.notebookFileRoot": "${workspaceFolder}"
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "python.defaultInterpreterPath": "C:/Users/Kevin/AppData/Local/pypoetry/Cache/virtualenvs/custom-agency-swarm-EGalA044-py3.9"
 }
