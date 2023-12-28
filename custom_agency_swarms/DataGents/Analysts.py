@@ -17,7 +17,7 @@ from instructions import (
     dev_instructions,
     analyst_instructions,
 )
-from ..DataGents.tools import (
+from tools import (
     CheckInstalledPackages,
     GetWorkDirTree,
     ReadFile,
@@ -68,8 +68,8 @@ analyst = Agent(
     tools=[SearchWeb],
 )
 
-# Add Shared Instructions
-fp_shared_instructions = os.getcwd() + "DataGents\\instructions\\manifesto.md"
+# Add Shared Instructions (Manifesto)
+fp_shared_instructions = os.getcwd() + "\\DataGents\\instructions\\manifesto.md"
 
 
 # 4. Define Agency Communication Flows

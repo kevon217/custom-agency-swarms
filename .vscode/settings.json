@@ -4,10 +4,10 @@
         "${workspaceFolder}/agency_swarm",
     ],
     "terminal.integrated.env.windows": {
-        "PYTHONPATH": "${workspaceFolder}"
+        "PYTHONPATH": "${workspaceFolder}/custom_agency_swarms"
     },
-    "terminal.integrated.cwd": "${workspaceFolder}",
+    "terminal.integrated.cwd": "${workspaceFolder}/custom_agency_swarms",
     "python.envFile": "${workspaceFolder}/.env",
-    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "jupyter.notebookFileRoot": "${workspaceFolder}/custom_agency_swarms",
     "python.defaultInterpreterPath": "C:/Users/Kevin/AppData/Local/pypoetry/Cache/virtualenvs/custom-agency-swarm-EGalA044-py3.9"
 }

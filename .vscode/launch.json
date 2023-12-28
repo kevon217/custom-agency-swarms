@@ -5,8 +5,8 @@
             "name": "Python: JobProposalGents",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/JobProposalGents/JobProposalGents.py",
-            "cwd": "${workspaceFolder}/JobProposalGents",
+            "program": "${workspaceFolder}/custom_agency_swarms/JobProposalGents/JobProposalGents.py",
+            "cwd": "${workspaceFolder}/custom_agency_swarms/JobProposalGents",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
@@ -17,8 +17,8 @@
             "name": "Python: WebBrowswing",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/WebBrowsing/web_browsing_agent.py",
-            "cwd": "${workspaceFolder}/WebBrowsing",
+            "program": "${workspaceFolder}/custom_agency_swarms/WebBrowsing/web_browsing_agent.py",
+            "cwd": "${workspaceFolder}/custom_agency_swarms/WebBrowsing",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
@@ -29,8 +29,8 @@
             "name": "Python: DataGents",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/DataGents/Analysts.py",
-            "cwd": "${workspaceFolder}/DataGents",
+            "program": "${workspaceFolder}/custom_agency_swarms/DataGents/Analysts.py",
+            "cwd": "${workspaceFolder}/custom_agency_swarms/DataGents",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
