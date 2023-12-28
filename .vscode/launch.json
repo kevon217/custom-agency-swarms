@@ -25,6 +25,18 @@
                 "PYTHONPATH": "${workspaceFolder}"
             }
         },
+        {
+            "name": "Python: DataGents",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/DataGents/Analysts.py",
+            "cwd": "${workspaceFolder}/DataGents",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
         // Add more configurations as needed
     ]
 }

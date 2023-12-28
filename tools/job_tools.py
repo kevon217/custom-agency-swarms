@@ -5,7 +5,8 @@ from typing import Dict, List, Literal
 from pydantic import Field, PrivateAttr
 
 from agency_swarm.tools import BaseTool
-from agency_swarm import set_openai_key, get_openai_client
+from agency_swarm import set_openai_key
+from agency_swarm.util import get_openai_client
 
 from instructor import OpenAISchema
 
@@ -14,44 +15,6 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 set_openai_key(OPENAI_API_KEY)
 client = get_openai_client()
-
-
-# 2. Define Your Custom Tool:
-class ExecutePyFile(BaseTool):
-    """Run existing python file from local disc."""
-
-    file_name: str = Field(..., description="The path to the .py file to be executed.")
-
-    def run(self):
-        """Executes a Python script at the given file path and captures its output and errors."""
-        try:
-            result = subprocess.run(
-                ["python3", self.file_name], text=True, capture_output=True, check=True
-            )
-            return result.stdout
-        except subprocess.CalledProcessError as e:
-            return f"An error occurred: {e.stderr}"
-
-
-class File(BaseTool):
-    """
-    Python file with an appropriate name, containing code that can be saved and executed locally at a later time. This environment has access to all standard Python packages and the internet.
-    """
-
-    chain_of_thought: str = Field(
-        ...,
-        description="Think step by step to determine the correct actions that are needed to be taken in order to complete the task.",
-    )
-    file_name: str = Field(
-        ..., description="The name of the file including the extension"
-    )
-    body: str = Field(..., description="Correct contents of a file")
-
-    def run(self):
-        with open(self.file_name, "w") as f:
-            f.write(self.body)
-
-        return "File written to " + self.file_name
 
 
 class ExtractJobDetails(BaseTool):
