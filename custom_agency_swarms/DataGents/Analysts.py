@@ -46,7 +46,7 @@ ceo = Agent(
 )
 
 dev = Agent(
-    name="PYTHON_DEV",
+    name="DEV",
     description="Responsible for creating and/or executing Python scripts to fulfill the user's request.",
     instructions=dev_instructions,
     files_folder=None,
@@ -61,21 +61,30 @@ dev = Agent(
 )
 
 analyst = Agent(
-    name="DATA_ANALYST",
+    name="ANALYST",
     description="Responsible for analyzing data requests and outlining the steps needed to fulfill the request.",
     instructions=analyst_instructions,
     files_folder=None,
-    tools=[SearchWeb],
+    tools=[],
 )
 
 # Add Shared Instructions (Manifesto)
-fp_shared_instructions = os.getcwd() + "\\DataGents\\instructions\\manifesto.md"
-
+fp_shared_instructions = (
+    os.getcwd()
+    + "\\custom_agency_swarms\\DataGents\\instructions\\fintech_manifesto.md"
+)
+with open(fp_shared_instructions, "r") as file:
+    shared_instructions = file.read()
 
 # 4. Define Agency Communication Flows
 agency = Agency(
-    [ceo, [ceo, analyst], [analyst, dev], [analyst, ceo]],
-    shared_instructions=fp_shared_instructions,
+    [
+        ceo,
+        [ceo, analyst],
+        [ceo, dev],
+        [dev, analyst],
+    ],
+    shared_instructions=shared_instructions,
 )
 
 # 5. Run Demo
