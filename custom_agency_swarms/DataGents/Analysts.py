@@ -17,7 +17,7 @@ from instructions import (
     dev_instructions,
     analyst_instructions,
 )
-from tools import (
+from custom_agency_swarms.tools import (
     CheckInstalledPackages,
     GetWorkDirTree,
     ReadFile,
@@ -26,13 +26,13 @@ from tools import (
     Program,
     SearchWeb,
 )
-from utils.workdir import init_agent_workdir
+from custom_agency_swarms.utils.workdir import init_agent_workdir
 
 
 # Set Agent Working Directory
 
 os.environ["AGENT_WORKING_DIR"] = init_agent_workdir(
-    relative_path="DataGents/agent_workdir"
+    relative_path="custom_agency_swarms/DataGents/agent_workdir"
 )
 
 # Define Agent Roles
@@ -73,25 +73,10 @@ fp_shared_instructions = os.getcwd() + "\\DataGents\\instructions\\manifesto.md"
 
 
 # 4. Define Agency Communication Flows
-# agency = Agency(
-#     [
-#         ceo,
-#         [ceo, analyst],
-#         [analyst, dev],
-#         [ceo, analyst, dev],
-#         [analyst, ceo]
-#     ],
-#     shared_instructions=fp_shared_instructions,
-# )
-
 agency = Agency(
-    [
-        ceo,
-        [ceo, dev],
-    ],
+    [ceo, [ceo, analyst], [analyst, dev], [analyst, ceo]],
     shared_instructions=fp_shared_instructions,
 )
-
 
 # 5. Run Demo
 agency.demo_gradio(height=900)

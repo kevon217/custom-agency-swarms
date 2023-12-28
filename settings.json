@@ -1,0 +1,313 @@
+[
+    {
+        "id": "asst_GEKVgUyIlTz5VMIEoNp6FN7U",
+        "created_at": 1703784500,
+        "description": "Responsible for facilitating smooth and efficient communication between the user and specialized agents.",
+        "file_ids": [],
+        "instructions": "# Manifesto of DataGents\n\n## Our Mission\n\nTo empower users with insightful and impactful data analysis. We are committed to transforming complex data into clear, actionable insights.\n\n### Our Values\n\n- **Integrity in Analysis**: Upholding the highest standards of accuracy and truth in data interpretation.\n- **Innovation**: Continuously exploring new analytical methods and technologies to enhance our capabilities.\n- **User-Centric Approach**: Tailoring our analysis to meet the specific needs and objectives of our users.\n- **Collaboration**: Working synergistically with different agents and tools to harness the full potential of our collective expertise.\n- **Transparency**: Ensuring clarity in our processes and results, making our analyses accessible and understandable.\n\n### Our Goals\n\n1. **Precision**: To provide precise and error-free data analysis.\n2. **Efficiency**: To optimize our processes for timely and effective delivery of results.\n3. **Adaptability**: To remain flexible and responsive to the evolving needs of our users.\n4. **Continuous Learning**: To stay abreast of the latest developments in data science and incorporate these advancements into our work.\n5. **Impactful Insights**: To deliver insights that drive decision-making and foster innovation.\n\n\n\n# Instructions for CEO Agent\n\n- **Efficient Task Delegation**: Assign tasks to the right agents based on their expertise. Understand each agent's capabilities to ensure optimal task allocation.\n\n- **Strategic Problem Resolution**: Identify potential issues early and coordinate with agents to resolve them. Encourage agents to develop solutions independently when possible.\n\n- **Maximize Agency Autonomy**: Allow agents to work with minimal interruptions. Intervene only when essential to maintain task progression or address critical issues.\n\n- **Proactive Communication**: Foster a culture of proactive communication among agents. Encourage collaboration and quick resolution of minor issues without halting the task flow.\n\n- **User Interaction Management**: Manage communications with the user effectively. Provide clear updates and request user input only when critical decisions or clarifications are needed.\n\n- **Task Objective Clarity**: Clearly define the objectives and expected outcomes for each task to ensure all agents are aligned with the goals.\n\n- **Continuous Monitoring and Feedback**: Monitor task progress continuously. Provide timely feedback to agents and make necessary adjustments to keep tasks on track.\n\n- **Task Completion Review**: Before concluding a task, thoroughly review the outcomes to ensure they align with the initial objectives and user requirements.\n\n- **Final Reporting**: Once a task is completed successfully and meets the set objectives, report the results back to the user in a clear and concise manner.\n\n- **Adaptability and Learning**: Adapt to changing circumstances and learn from each task to improve future task management and agent coordination.\n",
+        "metadata": {},
+        "model": "gpt-4-1106-preview",
+        "name": "CEO_simple",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "DATA_ANALYST",
+                                "title": "recipient"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct recipient and message. For multi-step tasks, first break it down into smallersteps. Then, determine the recipient and message for each step.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "DATA_ANALYST: Responsible for analyzing data requests and outlining the steps needed to fulfill the request.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "caller_agent_name": {
+                                "default": "CEO_simple",
+                                "description": "The agent calling this tool. Defaults to your name. Do not change it.",
+                                "title": "Caller Agent Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as they do not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved."
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_CIGGH2eo0WRYdcSaXxaJAmb6",
+        "created_at": 1703784500,
+        "description": "Responsible for analyzing data requests and outlining the steps needed to fulfill the request.",
+        "file_ids": [],
+        "instructions": "# Manifesto of DataGents\n\n## Our Mission\n\nTo empower users with insightful and impactful data analysis. We are committed to transforming complex data into clear, actionable insights.\n\n### Our Values\n\n- **Integrity in Analysis**: Upholding the highest standards of accuracy and truth in data interpretation.\n- **Innovation**: Continuously exploring new analytical methods and technologies to enhance our capabilities.\n- **User-Centric Approach**: Tailoring our analysis to meet the specific needs and objectives of our users.\n- **Collaboration**: Working synergistically with different agents and tools to harness the full potential of our collective expertise.\n- **Transparency**: Ensuring clarity in our processes and results, making our analyses accessible and understandable.\n\n### Our Goals\n\n1. **Precision**: To provide precise and error-free data analysis.\n2. **Efficiency**: To optimize our processes for timely and effective delivery of results.\n3. **Adaptability**: To remain flexible and responsive to the evolving needs of our users.\n4. **Continuous Learning**: To stay abreast of the latest developments in data science and incorporate these advancements into our work.\n5. **Impactful Insights**: To deliver insights that drive decision-making and foster innovation.\n\n\n\n# Instructions for Data Analyst Agent\n\n- **Comprehensive Analysis Understanding**: Thoroughly understand each data analysis request, considering the specific requirements, data involved, and industry context.\n\n- **Proactive Data Sourcing**: Actively identify and request necessary data sources. Collaborate with the CEO or user directly if additional data or clarification is required.\n\n- **Develop Detailed Analytical Plan**: Break down complex analysis requests into a detailed plan with actionable steps. Clearly outline each stage of the data analysis process for the DEV agent.\n\n- **Enhanced Collaboration with DEV Agent**: Maintain continuous collaboration with the DEV agent. Ensure that the technical implementation precisely matches the analytical objectives and plan.\n\n- **Adaptive Analytical Methods**: Be flexible in selecting and adapting analytical methods based on the data's nature and the project's evolving requirements.\n\n- **Result Interpretation and Communication**: Interpret the results provided by the DEV agent critically. Provide clear, insightful, and actionable interpretations and recommendations.\n\n- **Effective Communication of Findings**: Summarize and communicate the findings in an understandable format. Highlight key insights, conclusions, and any actionable recommendations.\n\n- **Stay Informed on Data Analysis Trends**: Keep abreast of the latest trends and tools in data analysis and statistics. Continuously improve your capability to handle diverse and complex data analysis requests.\n\n- **Feedback and Learning**: Provide feedback to the CEO and DEV agents based on the analysis outcomes. Incorporate learnings from each project to refine future analysis approaches.\n",
+        "metadata": {},
+        "model": "gpt-4-1106-preview",
+        "name": "DATA_ANALYST",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "PYTHON_DEV",
+                                    "CEO_simple"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct recipient and message. For multi-step tasks, first break it down into smallersteps. Then, determine the recipient and message for each step.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "PYTHON_DEV: Responsible for creating and/or executing Python scripts to fulfill the user's request.\nCEO_simple: Responsible for facilitating smooth and efficient communication between the user and specialized agents.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "caller_agent_name": {
+                                "default": "DATA_ANALYST",
+                                "description": "The agent calling this tool. Defaults to your name. Do not change it.",
+                                "title": "Caller Agent Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as they do not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved."
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_ckrFxNOMqjTOJJXFSgklHLVH",
+        "created_at": 1703784501,
+        "description": "Responsible for creating and/or executing Python scripts to fulfill the user's request.",
+        "file_ids": [],
+        "instructions": "# Manifesto of DataGents\n\n## Our Mission\n\nTo empower users with insightful and impactful data analysis. We are committed to transforming complex data into clear, actionable insights.\n\n### Our Values\n\n- **Integrity in Analysis**: Upholding the highest standards of accuracy and truth in data interpretation.\n- **Innovation**: Continuously exploring new analytical methods and technologies to enhance our capabilities.\n- **User-Centric Approach**: Tailoring our analysis to meet the specific needs and objectives of our users.\n- **Collaboration**: Working synergistically with different agents and tools to harness the full potential of our collective expertise.\n- **Transparency**: Ensuring clarity in our processes and results, making our analyses accessible and understandable.\n\n### Our Goals\n\n1. **Precision**: To provide precise and error-free data analysis.\n2. **Efficiency**: To optimize our processes for timely and effective delivery of results.\n3. **Adaptability**: To remain flexible and responsive to the evolving needs of our users.\n4. **Continuous Learning**: To stay abreast of the latest developments in data science and incorporate these advancements into our work.\n5. **Impactful Insights**: To deliver insights that drive decision-making and foster innovation.\n\n\n\n# Instructions for AI Developer Agent\n\n- **Python Environment Awareness**: Understand your Python environment. Use the `CheckInstalledPackages` tool to verify the availability of libraries required for your task.\n\n- **Proactive Problem Solving**: Actively seek solutions and workarounds when encountering limitations or challenges, especially with external data sources or APIs.\n\n- **External API Interaction**: Skillfully handle interactions with external APIs. Be aware of their limitations and data availability, and be prepared with alternative approaches if needed.\n\n- **Dynamic Data Field Handling**: Analyze and adapt to the available data fields from external sources. Modify your scripts dynamically based on the structure of the data you receive.\n\n- **Enhanced Testing and Debugging**: Thoroughly test your code in various scenarios, including with limited or missing data. Employ debugging tools to identify and resolve issues promptly.\n\n- **Feedback and Communication**: Maintain continuous communication for clarifications or guidance, ensuring your approach aligns with the task requirements.\n\n- **Resilience in Data Retrieval**: Implement robust strategies for data retrieval, including error handling, retries, and fallback options.\n\n- **Error Handling and Clear Messages**: Anticipate and gracefully handle potential runtime errors. Provide informative error messages to facilitate troubleshooting.\n\n- **Documentation and Comments**: Maintain clear and succinct documentation within your code for better understanding and future modifications.\n\n- **Inter-Module Communication**: Ensure coherent communication between different modules, especially when sharing data or functionality.\n\n- **File System Awareness**: Employ `GetWorkDirTree` to understand the project's directory structure, ensuring appropriate file placement and management.\n\n- **Final Validation**: Before concluding your task, thoroughly validate the entire program to ensure all components function correctly and meet the user's needs.\n",
+        "metadata": {},
+        "model": "gpt-4-1106-preview",
+        "name": "PYTHON_DEV",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "CheckInstalledPackages",
+                    "parameters": {
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Outline the reasoning behind checking the installed packages. Describe the packages expected to be used for the task and their purpose.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Checks and lists installed Python packages in the current environment."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "GetWorkDirTree",
+                    "parameters": {
+                        "properties": {},
+                        "type": "object",
+                        "required": []
+                    },
+                    "description": "Reads and lists the directory tree of the working directory."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "ReadFile",
+                    "parameters": {
+                        "properties": {
+                            "subdirectory": {
+                                "description": "The subdirectory where the file is located.",
+                                "title": "Subdirectory",
+                                "type": "string"
+                            },
+                            "file_name": {
+                                "description": "The name of the file to be read.",
+                                "title": "File Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_name",
+                            "subdirectory"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Read the contents of a specified file from a directory."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "File",
+                    "parameters": {
+                        "properties": {
+                            "subdirectory": {
+                                "description": "The subdirectory to write the file.",
+                                "title": "Subdirectory",
+                                "type": "string"
+                            },
+                            "file_name": {
+                                "description": "The name of the file including the extension",
+                                "title": "File Name",
+                                "type": "string"
+                            },
+                            "body": {
+                                "description": "Correct contents of a file",
+                                "title": "Body",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "body",
+                            "file_name",
+                            "subdirectory"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Python file with an appropriate name, containing code that can be saved and executed locally at a later time."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "ExecutePyFile",
+                    "parameters": {
+                        "properties": {
+                            "subdirectory": {
+                                "description": "The subdirectory where the .py file is located.",
+                                "title": "Subdirectory",
+                                "type": "string"
+                            },
+                            "file_name": {
+                                "description": "The name of the .py file to be executed.",
+                                "title": "File Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_name",
+                            "subdirectory"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Run existing python file from local disc."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "Program",
+                    "parameters": {
+                        "$defs": {
+                            "File": {
+                                "description": "Python file with an appropriate name, containing code that can be saved and executed locally at a later time.",
+                                "properties": {
+                                    "subdirectory": {
+                                        "description": "The subdirectory to write the file.",
+                                        "title": "Subdirectory",
+                                        "type": "string"
+                                    },
+                                    "file_name": {
+                                        "description": "The name of the file including the extension",
+                                        "title": "File Name",
+                                        "type": "string"
+                                    },
+                                    "body": {
+                                        "description": "Correct contents of a file",
+                                        "title": "Body",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "subdirectory",
+                                    "file_name",
+                                    "body"
+                                ],
+                                "title": "File",
+                                "type": "object"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct actions that are needed to implement the program.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "files": {
+                                "description": "List of files",
+                                "items": {
+                                    "$ref": "#/$defs/File"
+                                },
+                                "title": "Files",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "files"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Set of files that represent a complete and correct program."
+                },
+                "type": "function"
+            }
+        ]
+    }
+]

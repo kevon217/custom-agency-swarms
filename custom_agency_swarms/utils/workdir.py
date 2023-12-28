@@ -1,3 +1,4 @@
+# workdir.py
 import os
 import logging
 from pathlib import Path
@@ -10,9 +11,6 @@ logging.basicConfig(level=logging.INFO)
 def create_init_file(path: Path):
     """
     Creates an __init__.py file in the specified directory.
-
-    Parameters:
-    path (Path): The directory in which to create the __init__.py file.
     """
     init_file = path / "__init__.py"
     init_file.touch()  # Creates the file if it doesn't exist
@@ -21,12 +19,24 @@ def create_init_file(path: Path):
 
 def create_agent_workdir_structure(base_dir: Path):
     """
-    Creates the agent's working directory structure including necessary subdirectories and __init__.py files.
-
-    Parameters:
-    base_dir (Path): The base directory for the agent's working environment.
+    Creates the agent's working directory structure.
     """
-    subdirectories = ["config", "input", "logs", "output", "scripts", "temp"]
+    subdirectories = [
+        "data/external",
+        "data/interim",
+        "data/processed",
+        "data/raw",
+        "notebooks",
+        "reports",
+        "reports/figures",
+        "src",
+        "src/features",
+        "src/models",
+        "src/visualization",
+        "tests",
+        "utils",
+    ]
+
     for subdir in subdirectories:
         dir_to_create = base_dir / subdir
         dir_to_create.mkdir(parents=True, exist_ok=True)
@@ -41,13 +51,7 @@ def create_agent_workdir_structure(base_dir: Path):
 
 def init_agent_workdir(relative_path: str) -> str:
     """
-    Initializes the agent's working directory. Checks if the directory exists and creates it with subdirectories if not.
-
-    Parameters:
-    relative_path (str): The relative path to the agent's working directory from the script's current working directory.
-
-    Returns:
-    str: The absolute path to the agent's working directory as a string.
+    Initializes the agent's working directory.
     """
     # Determine current OS
     current_os = platform.system()
@@ -72,3 +76,9 @@ def init_agent_workdir(relative_path: str) -> str:
         logging.info("Agent's working directory already exists.")
 
     return str(agent_workdir.resolve())
+
+
+# Example usage
+if __name__ == "__main__":
+    workdir = init_agent_workdir("agent_workdir")
+    print(f"Agent Working Directory Initialized: {workdir}")

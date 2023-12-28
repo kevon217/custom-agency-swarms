@@ -6,11 +6,11 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/custom_agency_swarms/JobProposalGents/JobProposalGents.py",
-            "cwd": "${workspaceFolder}/custom_agency_swarms/JobProposalGents",
+            "cwd": "${workspaceFolder}/custom_agency_swarms",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
-                "PYTHONPATH": "${workspaceFolder}"
+                "PYTHONPATH": "${workspaceFolder}/custom_agency_swarms"
             }
         },
         {
@@ -18,11 +18,11 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/custom_agency_swarms/WebBrowsing/web_browsing_agent.py",
-            "cwd": "${workspaceFolder}/custom_agency_swarms/WebBrowsing",
+            "cwd": "${workspaceFolder}/custom_agency_swarms",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
-                "PYTHONPATH": "${workspaceFolder}"
+                "PYTHONPATH": "${workspaceFolder}/custom_agency_swarms"
             }
         },
         {
@@ -30,11 +30,11 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/custom_agency_swarms/DataGents/Analysts.py",
-            "cwd": "${workspaceFolder}/custom_agency_swarms/DataGents",
+            "cwd": "${workspaceFolder}/custom_agency_swarms",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
-                "PYTHONPATH": "${workspaceFolder}"
+                "PYTHONPATH": "${workspaceFolder}/custom_agency_swarms"
             }
         },
         // Add more configurations as needed
