@@ -1,14 +1,17 @@
 {
     "python.analysis.extraPaths": [
-        "${workspaceFolder}",
-        "${workspaceFolder}/agency_swarm",
-        "${workspaceFolder}/custom_agency_swarms"
+        "${workspaceFolder}/custom_agency_swarms",
+        "${workspaceFolder}/../agency_swarm"
     ],
     "terminal.integrated.env.windows": {
-        "PYTHONPATH": "${workspaceFolder}/custom-agency-swarms"
+        "PYTHONPATH": "C:/Users/Kevin/Desktop/Coding/ai-experiments/custom-agency-swarms"
     },
-    "terminal.integrated.cwd": "${workspaceFolder}/",
+    "terminal.integrated.cwd": "${workspaceFolder}/custom_agency_swarms",
     "python.envFile": "${workspaceFolder}/.env",
     "jupyter.notebookFileRoot": "${workspaceFolder}/",
-    "python.defaultInterpreterPath": "C:/Users/Kevin/AppData/Local/pypoetry/Cache/virtualenvs/custom-agency-swarm-EGalA044-py3.9"
+    "python.defaultInterpreterPath": "C:/Users/Kevin/AppData/Local/pypoetry/Cache/virtualenvs/custom-agency-swarm-EGalA044-py3.9",
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
 }

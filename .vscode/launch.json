@@ -10,7 +10,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
-                "PYTHONPATH": "${workspaceFolder}/custom_agency_swarms"
+                "PYTHONPATH": "${workspaceFolder}"
             }
         },
         {
@@ -22,7 +22,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
-                "PYTHONPATH": "${workspaceFolder}/custom_agency_swarms"
+                "PYTHONPATH": "${workspaceFolder}"
             }
         },
         {
@@ -34,9 +34,22 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {
-                "PYTHONPATH": "${workspaceFolder}/custom_agency_swarms"
+                "PYTHONPATH": "${workspaceFolder}"
             }
         },
+        {
+            "name": "Python: CodeGents",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/custom_agency_swarms/CodeGents/Coders.py",
+            "cwd": "${workspaceFolder}/custom_agency_swarms",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        }
+
         // Add more configurations as needed
     ]
 }
