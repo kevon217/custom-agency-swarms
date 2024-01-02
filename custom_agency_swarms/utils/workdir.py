@@ -17,6 +17,42 @@ def create_init_file(path: Path):
     logging.info(f"Created __init__.py at: {init_file}")
 
 
+def create_readme(path: Path):
+    """
+    Creates a README.md file in the specified directory.
+    """
+    readme_file = path / "README.md"
+    readme_file.touch()  # Creates the file if it doesn't exist
+    logging.info(f"Created README.md at: {readme_file}")
+
+
+def create_requirements_txt(path: Path):
+    """
+    Creates a requirements.txt file in the specified directory.
+    """
+    requirements_file = path / "requirements.txt"
+    requirements_file.touch()  # Creates the file if it doesn't exist
+    logging.info(f"Created requirements.txt at: {requirements_file}")
+
+
+def create_config_yaml(path: Path):
+    """
+    Creates a config.yaml file in the specified directory.
+    """
+    config_file = path / "config.yaml"
+    config_file.touch()  # Creates the file if it doesn't exist
+    logging.info(f"Created config.yaml at: {config_file}")
+
+
+def create_main_py(path: Path):
+    """
+    Creates a main.py file in the specified directory.
+    """
+    main_file = path / "main.py"
+    main_file.touch()  # Creates the file if it doesn't exist
+    logging.info(f"Created main.py at: {main_file}")
+
+
 def create_agent_workdir_structure(base_dir: Path):
     """
     Creates the agent's working directory structure.
@@ -45,8 +81,12 @@ def create_agent_workdir_structure(base_dir: Path):
         # Create __init__.py in each subdirectory
         create_init_file(dir_to_create)
 
-    # Create __init__.py in the root of the agent's working directory
+    # Create misc files as root of the agent's working directory
+    create_main_py(base_dir)
     create_init_file(base_dir)
+    create_config_yaml(base_dir)
+    create_readme(base_dir)
+    create_requirements_txt(base_dir)
 
 
 def init_agent_workdir(relative_path: str) -> str:
