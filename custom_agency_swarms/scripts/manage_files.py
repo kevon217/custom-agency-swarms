@@ -6,7 +6,7 @@ Example usage:
 - Retrieve details of a specific file: python manage_files.py retrieve --id file-abc123
 - Delete a specific file: python manage_files.py delete --id file-abc123
 - Retrieve content of a specific file: python manage_files.py retrieve_content --id file-abc123
-- Delete files within a specified date range: python manage_files.py delete_range --start_date "2024-01-04" --end_date "2024-01-04"
+- Delete files within a specified date range: python manage_files.py delete_range --start_date "2024-01-04" --end_date "2024-01-05"
 """
 
 import argparse
@@ -14,6 +14,7 @@ import logging
 import json
 
 from agency_swarm.util.oai import get_openai_client
+from custom_agency_swarms.utils.helper import parse_date, filter_fobjs_by_date_range
 from custom_agency_swarms.utils.file_helper import (
     list_file_objs,
     parse_file_objs,
@@ -21,8 +22,6 @@ from custom_agency_swarms.utils.file_helper import (
     retrieve_file_content,
     delete_file,
     delete_files_batch,
-    parse_date,
-    filter_files_by_date_range,
 )
 
 
@@ -42,7 +41,7 @@ def parse_arguments():
             "retrieve",
             "delete",
             "retrieve_content",
-            "delete_batch_today",
+            "delete_range",
         ],
         help="Action to perform",
     )
@@ -104,7 +103,7 @@ def main():
             return
 
         file_objs = list_file_objs(client)
-        files_to_delete = filter_files_by_date_range(file_objs, start_date, end_date)
+        files_to_delete = filter_fobjs_by_date_range(file_objs, start_date, end_date)
         file_ids_to_delete = [f.id for f in files_to_delete]
         delete_results = delete_files_batch(client, file_ids_to_delete)
         print(json.dumps(delete_results, indent=4))

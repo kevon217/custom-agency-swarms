@@ -1,6 +1,4 @@
 import logging
-import time
-from datetime import datetime, timedelta
 import openai
 
 
@@ -56,22 +54,6 @@ def parse_file_objs(file_objs, fields=["id", "filename", "created_at"]):
     except Exception as e:
         logging.error(f"Error parsing file objects: {e}")
         raise
-
-
-def parse_date(date_str):
-    for fmt in ("%Y-%m-%d", "%Y-%m-%d %H:%M:%S"):
-        try:
-            return datetime.strptime(date_str, fmt)
-        except ValueError:
-            pass
-    raise ValueError("Invalid date format. Use 'YYYY-MM-DD' or 'YYYY-MM-DD HH:MM:SS'")
-
-
-def filter_files_by_date_range(file_objs, start_date, end_date):
-    start_timestamp = int(start_date.timestamp())
-    end_timestamp = int(end_date.timestamp())
-
-    return [f for f in file_objs if start_timestamp <= f.created_at < end_timestamp]
 
 
 def retrieve_file(client, file_id):
