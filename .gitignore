@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-scrap/
+scrap.py/
 tests/
 
 # C extensions

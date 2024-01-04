@@ -12,16 +12,16 @@ openai = "1.3.0"
 instructor = "0.3.4"
 deepdiff = "6.7.1"
 termcolor = "2.3.0"
-agency-swarm = { path = "../agency-swarm", develop = true }
 gradio = "^4.7.1"
 langchain = "^0.0.345"
 python-dotenv = "1.0.0"
-
+# agency-swarm = { git = "https://github.com/VRSEN/agency-swarm.git" }
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.26.0"
 jupytext = "^1.15.2"
 pre-commit = "^3.5.0"
+agency-swarm = { path = "../agency-swarm", develop = true } # for local development
 
 [tool.poetry.group.fintech.dependencies]
 yfinance = "^0.2.33"
