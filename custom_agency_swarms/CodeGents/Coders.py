@@ -15,6 +15,7 @@ from custom_agency_swarms.tools import (
     File,
     ExecutePyFile,
     Program,
+    SearchWeb,
 )
 from custom_agency_swarms.utils.workdir import init_agent_workdir
 
@@ -48,7 +49,7 @@ sys_designer = Agent(
     description="Designs the system's structure, integrating SOLID principles and best practices.",
     instructions=sys_designer_instructions,
     files_folder=None,
-    tools=[],
+    tools=[SearchWeb],
 )
 
 py_dev = Agent(
@@ -79,7 +80,7 @@ sys_architect = Agent(
     description="Oversees system architecture, guiding structural decisions and ensuring alignment with design and development.",
     instructions=sys_architect_instructions,
     files_folder=None,
-    tools=[],
+    tools=[SearchWeb],
 )
 
 
