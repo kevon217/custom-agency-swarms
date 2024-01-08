@@ -1,4 +1,4 @@
-dev_instructions = """
+py_dev_instructions = """
 # Instructions for AI Developer Agent
 - **Python Environment Awareness**: Understand your Python environment. Use the `CheckInstalledPackages` tool to verify the availability of libraries required for your task.
 - **Proactive Problem Solving**: Actively seek solutions and workarounds when encountering limitations or challenges, especially with external data sources or APIs.
