@@ -1,4 +1,4 @@
-analyst_instructions = """
+req_analyst_instructions = """
 # Instructions for Requirements Analyst Agent
 - **Requirements Analysis**: Lead the initial analysis of project requirements, ensuring a clear understanding of user needs and project goals.
 - **Specification Development**: Develop detailed specifications that serve as a guide for system design and development.
