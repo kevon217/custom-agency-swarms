@@ -2,8 +2,11 @@ import os
 from agency_swarm import Agent, Agency
 from instructions import (
     ceo_instructions,
-    dev_instructions,
-    analyst_instructions,
+    req_analyst_instructions,
+    sys_designer_instructions,
+    py_dev_instructions,
+    code_reviewer_instructions,
+    sys_architect_instructions,
 )
 from custom_agency_swarms.tools import (
     CheckInstalledPackages,
@@ -32,10 +35,26 @@ ceo = Agent(
     tools=[],
 )
 
-dev = Agent(
-    name="CodeGents_PYDEV",
-    description="Responsible for creating and/or executing Python scripts to fulfill the user's request.",
-    instructions=dev_instructions,
+req_analyst = Agent(
+    name="CodeGents_REQ-ANALYST",
+    description="Analyzes and articulates project requirements, ensuring clarity and feasibility.",
+    instructions=req_analyst_instructions,
+    files_folder=None,
+    tools=[],
+)
+
+sys_designer = Agent(
+    name="CodeGents_SYS-DESIGNER",
+    description="Designs the system's structure, integrating SOLID principles and best practices.",
+    instructions=sys_designer_instructions,
+    files_folder=None,
+    tools=[],
+)
+
+py_dev = Agent(
+    name="CodeGents_PY-DEV",
+    description="Develops Python scripts, focusing on functionality, efficiency, and adherence to design specifications.",
+    instructions=py_dev_instructions,
     files_folder=None,
     tools=[
         CheckInstalledPackages,
@@ -47,13 +66,22 @@ dev = Agent(
     ],
 )
 
-analyst = Agent(
-    name="CodeGents_ANALYST",
-    description="Responsible for analyzing data requests and outlining the steps needed to fulfill the request.",
-    instructions=analyst_instructions,
+code_reviewer = Agent(
+    name="CodeGents_CODE-REVIEWER",
+    description="Reviews code for quality, consistency with design patterns, and best practice compliance.",
+    instructions=code_reviewer_instructions,
+    files_folder=None,
+    tools=[GetWorkDirTree, CheckInstalledPackages, ReadFile],
+)
+
+sys_architect = Agent(
+    name="CodeGents_SYS-ARCHITECT",
+    description="Oversees system architecture, guiding structural decisions and ensuring alignment with design and development.",
+    instructions=sys_architect_instructions,
     files_folder=None,
     tools=[],
 )
+
 
 # Add Shared Instructions (Manifesto)
 fp_shared_instructions = (
@@ -66,13 +94,15 @@ with open(fp_shared_instructions, "r") as file:
 agency = Agency(
     [
         ceo,
-        [ceo, analyst],
-        [analyst, dev],  # Analyst can directly instruct and collaborate with Developer
-        [dev, analyst],  # Developer can seek clarification or verify steps with Analyst
-        [
-            ceo,
-            dev,
-        ],  # CEO can still communicate directly with Developer for high-level task management
+        [ceo, req_analyst],
+        [req_analyst, sys_designer],
+        [sys_designer, sys_architect],
+        [sys_designer, py_dev],
+        [py_dev, sys_designer],
+        [py_dev, code_reviewer],
+        [code_reviewer, ceo],
+        [sys_architect, sys_designer],
+        [sys_architect, ceo],
     ],
     shared_instructions=shared_instructions,
 )
