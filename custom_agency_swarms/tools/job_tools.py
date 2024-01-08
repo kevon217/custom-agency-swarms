@@ -1,15 +1,11 @@
 import os
 from dotenv import load_dotenv
-import subprocess
-from typing import Dict, List, Literal
-from pydantic import Field, PrivateAttr
+from typing import List
+from pydantic import Field
 
 from agency_swarm.tools import BaseTool
 from agency_swarm import set_openai_key
 from agency_swarm.util import get_openai_client
-
-from instructor import OpenAISchema
-
 
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
