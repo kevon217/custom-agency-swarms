@@ -1,5 +1,9 @@
 # test_tasks.py
 
+# Add this variable for testing purposes
+testing_instructions = """Hello CEO, we're conducting a test of the agency's capabilities. For this test, we need the team to autonomously develop a proof-of-concept based on the provided request. Please ensure that all relevant agents understand they should proceed with minimal external intervention. The agents should make reasonable assumptions to fill in any gaps in the specifications and avoid engaging me unless facing a critical roadblock. If necessary, use simulated mock data. We're aiming for a functional solution to demonstrate the agency's potential. Let's see what the team can create!
+Task Description: {task_description}"""
+
 # Data Science Tasks
 data_dashboard = """Create an interactive dashboard to visualize key performance indicators (KPIs) for a sales team, including dynamic filtering and data drill-down capabilities."""
 stock_market_analysis = """Write a script to analyze stock market trends using historical data, including predictive modeling for future trends."""

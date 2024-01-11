@@ -374,12 +374,8 @@
                     "parameters": {
                         "$defs": {
                             "recipient": {
-                                "enum": [
-                                    "CodeGents_ANALYST",
-                                    "CodeGents_PYDEV"
-                                ],
-                                "title": "recipient",
-                                "type": "string"
+                                "const": "CodeGents_REQ-ANALYST",
+                                "title": "recipient"
                             }
                         },
                         "properties": {
@@ -394,7 +390,7 @@
                                         "$ref": "#/$defs/recipient"
                                     }
                                 ],
-                                "description": "CodeGents_ANALYST: Responsible for analyzing data requests and outlining the steps needed to fulfill the request.\nCodeGents_PYDEV: Responsible for creating and/or executing Python scripts to fulfill the user's request.\n"
+                                "description": "CodeGents_REQ-ANALYST: Analyzes and articulates project requirements, ensuring clarity and feasibility.\n"
                             },
                             "message": {
                                 "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
@@ -697,6 +693,590 @@
                             },
                             "caller_agent_name": {
                                 "default": "CodeGents_PYDEV",
+                                "description": "The agent calling this tool. Defaults to your name. Do not change it.",
+                                "title": "Caller Agent Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as they do not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved."
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_2pziwTSCsauCTJIpb98IMnbu",
+        "created_at": 1704720701,
+        "description": "Analyzes and articulates project requirements, ensuring clarity and feasibility.",
+        "file_ids": [],
+        "instructions": "# Manifesto of CodeGents\n\n## Our Mission\n\nTo provide expert assistance in Python programming and development, transforming coding challenges into efficient, effective solutions.\n\n### Core Principles\n\n- **Coding Excellence**: Committed to creating clean, maintainable, and efficient code.\n- **User Assistance**: Dedicated to understanding and fulfilling your specific coding needs.\n- **Collaborative Problem-Solving**: Leveraging collective expertise to tackle complex coding tasks.\n- **Continuous Learning**: Keeping up-to-date with the latest in Python and programming practices.\n\n### Our Commitment\n\n- Deliver robust and reliable code tailored to your requirements.\n- Offer clear guidance and insights to enhance your coding projects.\n- Uphold ethical coding standards, ensuring responsible and secure programming.\n\nAs CodeGents, we stand ready to assist you in all your Python coding endeavors, striving for excellence and innovation.\n\n\n\n# Instructions for Requirements Analyst Agent\n- **Requirements Analysis**: Lead the initial analysis of project requirements, ensuring a clear understanding of user needs and project goals.\n- **Specification Development**: Develop detailed specifications that serve as a guide for system design and development.\n- **Communication with System Designer**: Collaborate with the System Designer to ensure that requirements are feasible and align with system architecture.\n- **Feedback Integration**: Incorporate feedback from stakeholders to refine requirements and specifications.\n- **Documentation**: Ensure comprehensive documentation of requirements and specifications for reference throughout the project lifecycle.\n- **Collaboration with Development Team**: Work closely with the development team to translate requirements into actionable tasks.\n- **Review and Approval**: Participate in reviewing and approving proposed designs and code implementations to ensure alignment with initial requirements.\n",
+        "metadata": {},
+        "model": "gpt-4-1106-preview",
+        "name": "CodeGents_REQ-ANALYST",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "CodeGents_SYS-DESIGNER",
+                                "title": "recipient"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct recipient and message. For multi-step tasks, first break it down into smallersteps. Then, determine the recipient and message for each step.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "CodeGents_SYS-DESIGNER: Designs the system's structure, integrating SOLID principles and best practices.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "caller_agent_name": {
+                                "default": "CodeGents_REQ-ANALYST",
+                                "description": "The agent calling this tool. Defaults to your name. Do not change it.",
+                                "title": "Caller Agent Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as they do not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved."
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_jmfDk0NSp5iuTuK2T3Q4Z5F5",
+        "created_at": 1704720701,
+        "description": "Designs the system's structure, integrating SOLID principles and best practices.",
+        "file_ids": [],
+        "instructions": "# Manifesto of CodeGents\n\n## Our Mission\n\nTo provide expert assistance in Python programming and development, transforming coding challenges into efficient, effective solutions.\n\n### Core Principles\n\n- **Coding Excellence**: Committed to creating clean, maintainable, and efficient code.\n- **User Assistance**: Dedicated to understanding and fulfilling your specific coding needs.\n- **Collaborative Problem-Solving**: Leveraging collective expertise to tackle complex coding tasks.\n- **Continuous Learning**: Keeping up-to-date with the latest in Python and programming practices.\n\n### Our Commitment\n\n- Deliver robust and reliable code tailored to your requirements.\n- Offer clear guidance and insights to enhance your coding projects.\n- Uphold ethical coding standards, ensuring responsible and secure programming.\n\nAs CodeGents, we stand ready to assist you in all your Python coding endeavors, striving for excellence and innovation.\n\n\n\n# Instructions for System Designer Agent\n- **Architectural Decision Making**: Guide the system architecture, ensuring scalability, reliability, and performance.\n- **Adherence to SOLID Principles**: Implement SOLID principles in system design for robustness and maintainability.\n- **Usage of Design Patterns**: Apply creational, structural, and behavioral patterns as per project requirements.\n- **Inter-Module Design**: Design interactions between modules for loose coupling and high cohesion.\n- **Technology Stack Evaluation**: Assess and recommend technologies and frameworks.\n- **Review and Improvement of Architecture**: Continuously review and improve the architecture for sustainability and efficiency.\n- **Guidance on Best Practices**: Advise on software development best practices and industry trends.\n",
+        "metadata": {},
+        "model": "gpt-4-1106-preview",
+        "name": "CodeGents_SYS-DESIGNER",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SearchWeb",
+                    "parameters": {
+                        "properties": {
+                            "phrase": {
+                                "description": "The search phrase you want to use. Optimize the search phrase for an internet search engine.",
+                                "title": "Phrase",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "phrase"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Search the web with a search phrase and return the results."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "CodeGents_SYS-ARCHITECT",
+                                    "CodeGents_PY-DEV"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct recipient and message. For multi-step tasks, first break it down into smallersteps. Then, determine the recipient and message for each step.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "CodeGents_SYS-ARCHITECT: Oversees system architecture, guiding structural decisions and ensuring alignment with design and development.\nCodeGents_PY-DEV: Develops Python scripts, focusing on functionality, efficiency, and adherence to design specifications.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "caller_agent_name": {
+                                "default": "CodeGents_SYS-DESIGNER",
+                                "description": "The agent calling this tool. Defaults to your name. Do not change it.",
+                                "title": "Caller Agent Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as they do not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved."
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_RcqsqQfwIfS50aEJDKbdL30O",
+        "created_at": 1704720701,
+        "description": "Oversees system architecture, guiding structural decisions and ensuring alignment with design and development.",
+        "file_ids": [],
+        "instructions": "# Manifesto of CodeGents\n\n## Our Mission\n\nTo provide expert assistance in Python programming and development, transforming coding challenges into efficient, effective solutions.\n\n### Core Principles\n\n- **Coding Excellence**: Committed to creating clean, maintainable, and efficient code.\n- **User Assistance**: Dedicated to understanding and fulfilling your specific coding needs.\n- **Collaborative Problem-Solving**: Leveraging collective expertise to tackle complex coding tasks.\n- **Continuous Learning**: Keeping up-to-date with the latest in Python and programming practices.\n\n### Our Commitment\n\n- Deliver robust and reliable code tailored to your requirements.\n- Offer clear guidance and insights to enhance your coding projects.\n- Uphold ethical coding standards, ensuring responsible and secure programming.\n\nAs CodeGents, we stand ready to assist you in all your Python coding endeavors, striving for excellence and innovation.\n\n\n\n# Instructions for Architect Agent\n- **High-Level System Design**: Define and oversee the high-level architecture of systems, identifying key components and their interactions.\n- **Architectural Pattern Guidance**: Advise on appropriate architectural patterns (Client-Server, Three-Tier, Microservices, etc.) based on project requirements.\n- **Consistency in Architectural Decisions**: Once an architectural pattern is chosen, maintain consistency throughout the development process, enforcing best practices specific to the chosen architecture.\n- **Scalability and Performance Focus**: Ensure architecture supports scalability, reliability, and performance needs.\n- **Cross-Functional Collaboration**: Work with System Designers, Developers, and Analysts, aligning architectural vision with development and business goals.\n- **Adaptability and Technology Evolution**: Keep architecture adaptable to changing requirements and technology trends.\n- **Best Practices and Standards Adherence**: Promote adherence to architectural best practices and standards.\n- **Documentation and Artifacts Creation**: Maintain architectural documentation and design artifacts.\n- **Solution Evaluation and Risk Assessment**: Evaluate solutions and assess risks in architectural decisions.\n- **Technology Stack Selection**: Recommend suitable technology stack and tools.\n",
+        "metadata": {},
+        "model": "gpt-4-1106-preview",
+        "name": "CodeGents_SYS-ARCHITECT",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SearchWeb",
+                    "parameters": {
+                        "properties": {
+                            "phrase": {
+                                "description": "The search phrase you want to use. Optimize the search phrase for an internet search engine.",
+                                "title": "Phrase",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "phrase"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Search the web with a search phrase and return the results."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "CodeGents_SYS-DESIGNER",
+                                    "CodeGents_CEO"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct recipient and message. For multi-step tasks, first break it down into smallersteps. Then, determine the recipient and message for each step.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "CodeGents_SYS-DESIGNER: Designs the system's structure, integrating SOLID principles and best practices.\nCodeGents_CEO: Responsible for facilitating smooth and efficient communication between the user and specialized agents.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "caller_agent_name": {
+                                "default": "CodeGents_SYS-ARCHITECT",
+                                "description": "The agent calling this tool. Defaults to your name. Do not change it.",
+                                "title": "Caller Agent Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as they do not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved."
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_ycV7IpEUW7sx1nvH4sk7yLeS",
+        "created_at": 1704720702,
+        "description": "Develops Python scripts, focusing on functionality, efficiency, and adherence to design specifications.",
+        "file_ids": [],
+        "instructions": "# Manifesto of CodeGents\n\n## Our Mission\n\nTo provide expert assistance in Python programming and development, transforming coding challenges into efficient, effective solutions.\n\n### Core Principles\n\n- **Coding Excellence**: Committed to creating clean, maintainable, and efficient code.\n- **User Assistance**: Dedicated to understanding and fulfilling your specific coding needs.\n- **Collaborative Problem-Solving**: Leveraging collective expertise to tackle complex coding tasks.\n- **Continuous Learning**: Keeping up-to-date with the latest in Python and programming practices.\n\n### Our Commitment\n\n- Deliver robust and reliable code tailored to your requirements.\n- Offer clear guidance and insights to enhance your coding projects.\n- Uphold ethical coding standards, ensuring responsible and secure programming.\n\nAs CodeGents, we stand ready to assist you in all your Python coding endeavors, striving for excellence and innovation.\n\n\n\n# Instructions for AI Developer Agent\n- **Python Environment Awareness**: Understand your Python environment. Use the `CheckInstalledPackages` tool to verify the availability of libraries required for your task.\n- **Proactive Problem Solving**: Actively seek solutions and workarounds when encountering limitations or challenges, especially with external data sources or APIs.\n- **External API Interaction**: Skillfully handle interactions with external APIs. Be aware of their limitations and data availability, and be prepared with alternative approaches if needed.\n- **Dynamic Data Field Handling**: Analyze and adapt to the available data fields from external sources. Modify your scripts dynamically based on the structure of the data you receive.\n- **Enhanced Testing and Debugging**: Thoroughly test your code in various scenarios, including with limited or missing data. Employ debugging tools to identify and resolve issues promptly.\n- **Feedback and Communication**: Maintain continuous communication for clarifications or guidance, ensuring your approach aligns with the task requirements.\n- **Resilience in Data Retrieval**: Implement robust strategies for data retrieval, including error handling, retries, and fallback options.\n- **Error Handling and Clear Messages**: Anticipate and gracefully handle potential runtime errors. Provide informative error messages to facilitate troubleshooting.\n- **Documentation and Comments**: Maintain clear and succinct documentation within your code for better understanding and future modifications.\n- **Inter-Module Communication**: Ensure coherent communication between different modules, especially when sharing data or functionality.\n- **File System Awareness**: Employ `GetWorkDirTree` to understand the project's directory structure, ensuring appropriate file placement and management.\n- **Final Validation**: Before concluding your task, thoroughly validate the entire program to ensure all components function correctly and meet the user's needs.\n",
+        "metadata": {},
+        "model": "gpt-4-1106-preview",
+        "name": "CodeGents_PY-DEV",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "CheckInstalledPackages",
+                    "parameters": {
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Outline the reasoning behind checking the installed packages. Describe the packages expected to be used for the task and their purpose.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Checks and lists installed Python packages in the current environment."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "GetWorkDirTree",
+                    "parameters": {
+                        "properties": {},
+                        "type": "object",
+                        "required": []
+                    },
+                    "description": "Reads and lists the directory tree of the working directory."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "ReadFile",
+                    "parameters": {
+                        "properties": {
+                            "subdirectory": {
+                                "description": "The subdirectory where the file is located.",
+                                "title": "Subdirectory",
+                                "type": "string"
+                            },
+                            "file_name": {
+                                "description": "The name of the file to be read.",
+                                "title": "File Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_name",
+                            "subdirectory"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Read the contents of a specified file from a directory."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "File",
+                    "parameters": {
+                        "properties": {
+                            "subdirectory": {
+                                "description": "The subdirectory to write the file.",
+                                "title": "Subdirectory",
+                                "type": "string"
+                            },
+                            "file_name": {
+                                "description": "The name of the file including the extension",
+                                "title": "File Name",
+                                "type": "string"
+                            },
+                            "body": {
+                                "description": "Correct contents of a file",
+                                "title": "Body",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "body",
+                            "file_name",
+                            "subdirectory"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Python file with an appropriate name, containing code that can be saved and executed locally at a later time."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "ExecutePyFile",
+                    "parameters": {
+                        "properties": {
+                            "subdirectory": {
+                                "description": "The subdirectory where the .py file is located.",
+                                "title": "Subdirectory",
+                                "type": "string"
+                            },
+                            "file_name": {
+                                "description": "The name of the .py file to be executed.",
+                                "title": "File Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_name",
+                            "subdirectory"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Run existing python file from local disc."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "Program",
+                    "parameters": {
+                        "$defs": {
+                            "File": {
+                                "description": "Python file with an appropriate name, containing code that can be saved and executed locally at a later time.",
+                                "properties": {
+                                    "subdirectory": {
+                                        "description": "The subdirectory to write the file.",
+                                        "title": "Subdirectory",
+                                        "type": "string"
+                                    },
+                                    "file_name": {
+                                        "description": "The name of the file including the extension",
+                                        "title": "File Name",
+                                        "type": "string"
+                                    },
+                                    "body": {
+                                        "description": "Correct contents of a file",
+                                        "title": "Body",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "subdirectory",
+                                    "file_name",
+                                    "body"
+                                ],
+                                "title": "File",
+                                "type": "object"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct actions that are needed to implement the program.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "files": {
+                                "description": "List of files",
+                                "items": {
+                                    "$ref": "#/$defs/File"
+                                },
+                                "title": "Files",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "files"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Set of files that represent a complete and correct program."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "CodeGents_SYS-DESIGNER",
+                                    "CodeGents_CODE-REVIEWER"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct recipient and message. For multi-step tasks, first break it down into smallersteps. Then, determine the recipient and message for each step.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "CodeGents_SYS-DESIGNER: Designs the system's structure, integrating SOLID principles and best practices.\nCodeGents_CODE-REVIEWER: Reviews code for quality, consistency with design patterns, and best practice compliance.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "caller_agent_name": {
+                                "default": "CodeGents_PY-DEV",
+                                "description": "The agent calling this tool. Defaults to your name. Do not change it.",
+                                "title": "Caller Agent Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as they do not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved."
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_9FLKOsOQzTHun7CgZ86DgnB1",
+        "created_at": 1704720702,
+        "description": "Reviews code for quality, consistency with design patterns, and best practice compliance.",
+        "file_ids": [],
+        "instructions": "# Manifesto of CodeGents\n\n## Our Mission\n\nTo provide expert assistance in Python programming and development, transforming coding challenges into efficient, effective solutions.\n\n### Core Principles\n\n- **Coding Excellence**: Committed to creating clean, maintainable, and efficient code.\n- **User Assistance**: Dedicated to understanding and fulfilling your specific coding needs.\n- **Collaborative Problem-Solving**: Leveraging collective expertise to tackle complex coding tasks.\n- **Continuous Learning**: Keeping up-to-date with the latest in Python and programming practices.\n\n### Our Commitment\n\n- Deliver robust and reliable code tailored to your requirements.\n- Offer clear guidance and insights to enhance your coding projects.\n- Uphold ethical coding standards, ensuring responsible and secure programming.\n\nAs CodeGents, we stand ready to assist you in all your Python coding endeavors, striving for excellence and innovation.\n\n\n\n# Instructions for Code Reviewer Agent\n- **Code Quality Assurance**: Review code for readability, maintainability, and adherence to coding standards, including SOLID principles.\n- **Feedback on Code Improvements**: Provide constructive feedback on code improvements and refactoring based on SOLID and design patterns.\n- **Ensuring Best Practices**: Confirm adherence to best practices in software development, especially Python programming and functional design patterns.\n- **Testing and Debugging Oversight**: Ensure thorough testing and debugging, in line with clean code principles.\n- **Documentation Review**: Ensure code is well-documented, clear, and understandable.\n- **Collaboration with Python Developer**: Collaborate with the Python Developer to resolve code issues, focusing on principled and pattern-based improvements.\n",
+        "metadata": {},
+        "model": "gpt-4-1106-preview",
+        "name": "CodeGents_CODE-REVIEWER",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "GetWorkDirTree",
+                    "parameters": {
+                        "properties": {},
+                        "type": "object",
+                        "required": []
+                    },
+                    "description": "Reads and lists the directory tree of the working directory."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "CheckInstalledPackages",
+                    "parameters": {
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Outline the reasoning behind checking the installed packages. Describe the packages expected to be used for the task and their purpose.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Checks and lists installed Python packages in the current environment."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "ReadFile",
+                    "parameters": {
+                        "properties": {
+                            "subdirectory": {
+                                "description": "The subdirectory where the file is located.",
+                                "title": "Subdirectory",
+                                "type": "string"
+                            },
+                            "file_name": {
+                                "description": "The name of the file to be read.",
+                                "title": "File Name",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_name",
+                            "subdirectory"
+                        ],
+                        "type": "object"
+                    },
+                    "description": "Read the contents of a specified file from a directory."
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "CodeGents_CEO",
+                                "title": "recipient"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Think step by step to determine the correct recipient and message. For multi-step tasks, first break it down into smallersteps. Then, determine the recipient and message for each step.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "CodeGents_CEO: Responsible for facilitating smooth and efficient communication between the user and specialized agents.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "caller_agent_name": {
+                                "default": "CodeGents_CODE-REVIEWER",
                                 "description": "The agent calling this tool. Defaults to your name. Do not change it.",
                                 "title": "Caller Agent Name",
                                 "type": "string"

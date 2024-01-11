@@ -2,12 +2,7 @@
 
 # Current Agencies
 
-1. CodeGents
-2. DataGents
-3. TerritoryGents (WIP)
-4. WebBrowsing (WIP)
-
-# TODO::TASKS
-
-1. code up Notion db cleaning, metadata extraction/organization
-2. define knowledge bases
+1. CodeGents (WIP)
+2. DataGents (WIP)
+3. WebBrowsing (WIP)
+4. JobProposalGents (WIP)
