@@ -1,5 +1,6 @@
 # workdir.py
 import os
+import shutil
 import logging
 from pathlib import Path
 import platform
@@ -35,6 +36,25 @@ def create_requirements_txt(path: Path):
     logging.info(f"Created requirements.txt at: {requirements_file}")
 
 
+def create_env_file(path: Path, source_env_path: Path):
+    """
+    Creates a .env file in the specified directory and copies the OPENAI_API_KEY from the source .env file.
+    """
+    env_file = path / ".env"
+    try:
+        with open(source_env_path, "r") as src, open(env_file, "w") as dst:
+            lines = src.readlines()
+            for line in lines:
+                if line.startswith("OPENAI_API_KEY"):
+                    dst.write(line)
+                    break
+        logging.info(f"Created .env file at: {env_file}")
+    except FileNotFoundError:
+        logging.error(f"Source .env file not found at: {source_env_path}")
+    except Exception as e:
+        logging.error(f"Error creating .env file: {e}")
+
+
 def create_config_yaml(path: Path):
     """
     Creates a config.yaml file in the specified directory.
@@ -53,7 +73,7 @@ def create_main_py(path: Path):
     logging.info(f"Created main.py at: {main_file}")
 
 
-def create_agent_workdir_structure(base_dir: Path):
+def create_agent_workdir_structure(base_dir: Path, source_env_path: Path):
     """
     Creates the agent's working directory structure.
     """
@@ -87,6 +107,7 @@ def create_agent_workdir_structure(base_dir: Path):
     create_config_yaml(base_dir)
     create_readme(base_dir)
     create_requirements_txt(base_dir)
+    create_env_file(base_dir, source_env_path)
 
 
 def init_agent_workdir(relative_path: str) -> str:
@@ -95,6 +116,8 @@ def init_agent_workdir(relative_path: str) -> str:
     """
     # Determine current OS
     current_os = platform.system()
+    # Use the current working directory's .env file
+    source_env_path = Path.cwd() / ".env"
 
     # Construct the Path object
     if current_os == "Windows" and not relative_path.startswith("\\\\"):
@@ -111,7 +134,7 @@ def init_agent_workdir(relative_path: str) -> str:
         logging.info(
             "Agent's working directory not found. Creating directory structure."
         )
-        create_agent_workdir_structure(agent_workdir)
+        create_agent_workdir_structure(agent_workdir, source_env_path=source_env_path)
     else:
         logging.info("Agent's working directory already exists.")
 
