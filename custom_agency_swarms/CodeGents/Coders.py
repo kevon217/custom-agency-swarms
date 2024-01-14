@@ -1,5 +1,7 @@
 import os
 from agency_swarm import Agent, Agency
+from agency_swarm.agents.browsing import BrowsingAgent
+from agency_swarm.tools import Retrieval, CodeInterpreter
 from instructions import (
     ceo_instructions,
     req_analyst_instructions,
@@ -36,12 +38,19 @@ ceo = Agent(
     tools=[],
 )
 
+selenium_config = {
+    "chrome_profile_path": "C:\\Users\\Kevin\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 3",  # Replace with your actual profile path
+    "headless": False,
+}
+
+browser = BrowsingAgent(selenium_config=selenium_config)
+
 req_analyst = Agent(
     name="CodeGents_REQ-ANALYST",
     description="Analyzes and articulates project requirements, ensuring clarity and feasibility.",
     instructions=req_analyst_instructions,
     files_folder=None,
-    tools=[],
+    tools=[SearchWeb],
 )
 
 sys_designer = Agent(
@@ -49,7 +58,7 @@ sys_designer = Agent(
     description="Designs the system's structure, integrating SOLID principles and best practices.",
     instructions=sys_designer_instructions,
     files_folder=None,
-    tools=[SearchWeb],
+    tools=[],
 )
 
 py_dev = Agent(
@@ -80,7 +89,7 @@ sys_architect = Agent(
     description="Oversees system architecture, guiding structural decisions and ensuring alignment with design and development.",
     instructions=sys_architect_instructions,
     files_folder=None,
-    tools=[SearchWeb],
+    tools=[],
 )
 
 
@@ -95,15 +104,17 @@ with open(fp_shared_instructions, "r") as file:
 agency = Agency(
     [
         ceo,
+        [ceo, browser],
         [ceo, req_analyst],
+        [ceo, sys_designer],
+        [ceo, py_dev],
+        [ceo, code_reviewer],
+        [ceo, sys_architect],
+        [req_analyst, browser],
         [req_analyst, sys_designer],
-        [sys_designer, sys_architect],
-        [sys_designer, py_dev],
-        [py_dev, sys_designer],
+        [req_analyst, py_dev],
+        [req_analyst, sys_architect],
         [py_dev, code_reviewer],
-        [code_reviewer, ceo],
-        [sys_architect, sys_designer],
-        [sys_architect, ceo],
     ],
     shared_instructions=shared_instructions,
 )
